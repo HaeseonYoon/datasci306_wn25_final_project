@@ -1,0 +1,34 @@
+---
+title: "Preprocessing"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+```
+
+## Load and save IMDb sample data
+
+```{r}
+preprocess <- function(file_name) {
+  read_csv(
+    paste0(file_name, ".csv.gz"),
+    na = "\\N",
+    show_col_types = FALSE
+  )
+}
+```
+
+```{r}
+name_basics <- preprocess("name_basics_sample")
+title_basics <- preprocess("title_basics_sample")
+title_ratings <- preprocess("title_ratings_sample")
+title_principals <- preprocess("title_principals_sample")
+```
+
+```{r}
+write_rds(name_basics, "name_basics.rda")
+write_rds(title_basics, "title_basics.rda")
+write_rds(title_ratings, "title_ratings.rda")
+write_rds(title_principals, "title_principals.rda")
+```
